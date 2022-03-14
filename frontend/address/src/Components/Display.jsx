@@ -14,7 +14,7 @@ export const Display = () => {
   return (
     <div>
         {
-                data.map((item)=>{
+                data.data.map((item)=>{
                     return(
                         <div key={item.id} >
                             <p>{item.floor}</p>
