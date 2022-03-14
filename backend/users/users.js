@@ -2,6 +2,7 @@ const express=require('express');
 const uuid=require('uuid');
 const UserData=require("../userData.json");
 const router=express.Router();
+const fs = require('fs')
 
 router.get("/",(req,res)=>{
     const value={
@@ -24,7 +25,6 @@ router.get("/address/:id",(req,res)=>{
 })
 
 router.post("/address",(req,res)=>{
-    // * Create a new user
     try{
         const {floor,street,landmark,locality,pincode}=req.body
         if(!floor) throw new Error("floor is required");
@@ -53,8 +53,11 @@ router.patch("/address/:id",(req,res)=>{
     if(!user){
         res.status(400).send("User not found");
     }
-    user.author=req.body.author;
-    user.published_year=req.body.published_year;
+    user.floor=req.body.floor;
+    user.street=req.body.street;
+    user.landmark=req.body.landmark;
+    user.locality=req.body.locality;
+    user.pincode=req.body.pincode;
     res.send(user)
 })
 
