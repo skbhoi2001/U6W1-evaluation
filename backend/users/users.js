@@ -41,7 +41,8 @@ router.post("/address",(req,res)=>{
             pincode
         }
         UserData.push(user);
-        res.status(201).json(user);
+        fs.writeFileSync(`${__dirname}/../userData.json`,JSON.stringify(UserData))
+        res.status(201).json(req.body);
     }
     catch(err){
       res.status(400).send(`Invalid request: ${err.toString()}`)
